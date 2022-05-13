@@ -19,27 +19,35 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="参数化测试用例设计测试用例如下：  上次的脚本报错，问题出在这一行 1res &#x3D; driver.find_element(By.CLASS_NAME, &quot;&#x2F;&#x2F;div[@class&#x3D;&amp;#x27;@ferrorhead&amp;#x27;]&quot;).text  修改成 1res &#x3D; driver.find_element(By.XPATH, &quot;&#x2F;&#x2F;div[@class&#x3D;&amp;#x27;f">
+    <meta name="description" content="Postman常见类型的接口请求（一）不带参数的接口请求没有参数，只需要考虑请求方式+网址。 如天气预报接口，http:&#x2F;&#x2F;t.weather.sojson.com&#x2F;api&#x2F;weather&#x2F;city&#x2F;101270101  （二）带查询参数的接口请求URL地址中问号后面的部分就叫查询参数，由键值对组成。 格式为：key1&#x3D;value1&amp;key2&#x3D;value2, 如果有多组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Selenium自动化测试之登录页面参数化测试">
-<meta property="og:url" content="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:title" content="Postman之常见接口请求">
+<meta property="og:url" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="参数化测试用例设计测试用例如下：  上次的脚本报错，问题出在这一行 1res &#x3D; driver.find_element(By.CLASS_NAME, &quot;&#x2F;&#x2F;div[@class&#x3D;&amp;#x27;@ferrorhead&amp;#x27;]&quot;).text  修改成 1res &#x3D; driver.find_element(By.XPATH, &quot;&#x2F;&#x2F;div[@class&#x3D;&amp;#x27;f">
+<meta property="og:description" content="Postman常见类型的接口请求（一）不带参数的接口请求没有参数，只需要考虑请求方式+网址。 如天气预报接口，http:&#x2F;&#x2F;t.weather.sojson.com&#x2F;api&#x2F;weather&#x2F;city&#x2F;101270101  （二）带查询参数的接口请求URL地址中问号后面的部分就叫查询参数，由键值对组成。 格式为：key1&#x3D;value1&amp;key2&#x3D;value2, 如果有多组">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/clip_image001.png">
-<meta property="og:image" content="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/clip_image002.jpg">
-<meta property="og:image" content="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/image-20220507140708456.png">
-<meta property="article:published_time" content="2022-05-07T05:38:26.000Z">
-<meta property="article:modified_time" content="2022-05-11T13:25:41.491Z">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230134260.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230303839.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230531480.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230700462.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230817955.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230900168.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231117209.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231216920.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231421271.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231538254.png">
+<meta property="og:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231653265.png">
+<meta property="article:published_time" content="2022-05-13T14:57:20.000Z">
+<meta property="article:modified_time" content="2022-05-13T15:17:00.700Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Selenium">
+<meta property="article:tag" content="Postman">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/clip_image001.png">
+<meta name="twitter:image" content="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230134260.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>Selenium自动化测试之登录页面参数化测试 · fi3ework&#39;s Studio</title>
+    <title>Postman之常见接口请求 · fi3ework&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -264,7 +272,7 @@
                 <a href="/">fi3ework&#39;s Studio.</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">Selenium自动化测试之登录页面参数化测试</a>
+                <a href="#" class="post-name">Postman之常见接口请求</a>
             </div>
         </div>
     
@@ -310,7 +318,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                Selenium自动化测试之登录页面参数化测试
+                Postman之常见接口请求
             <!-- 404 -->
             
         </h1>
@@ -330,20 +338,20 @@
                     <div class= post-intro-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Selenium">Selenium</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Postman">Postman</a>
     
 </div>
 
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">978</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">379</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2022/05/07</span>
+                    <span class="post-intro-time">2022/05/13</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -498,63 +506,51 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h3 id="参数化测试用例设计"><a href="#参数化测试用例设计" class="headerlink" title="参数化测试用例设计"></a>参数化测试用例设计</h3><p>测试用例如下：</p>
-<p><img src="/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/clip_image001.png"></p>
-<p>上次的脚本报错，问题出在这一行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = driver.find_element(By.CLASS_NAME, &quot;//div[@class=&#x27;@ferrorhead&#x27;]&quot;).text</span><br></pre></td></tr></table></figure>
-
-<p>修改成</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = driver.find_element(By.XPATH, &quot;//div[@class=&#x27;ferrorhead&#x27;]&quot;).text</span><br></pre></td></tr></table></figure>
-
-<p>另外，测试用例销毁部分的代码还需要补充</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@classmethod</span><br><span class="line">   def tearDownClass(cls) -&gt; None:</span><br><span class="line">       print(&quot;所有测试的销毁工作&quot;)</span><br><span class="line">       cls.driver.quit()</span><br><span class="line">   def tearDown(self) -&gt; None:</span><br><span class="line">       print(&quot;每个用例的销毁工作&quot;)</span><br><span class="line">       time.sleep(2)</span><br></pre></td></tr></table></figure>
-
-<p>至此，昨天的测试代码能够正常运行并通过测试</p>
-<h3 id="参数化测试脚本"><a href="#参数化测试脚本" class="headerlink" title="参数化测试脚本"></a>参数化测试脚本</h3><p>参数化测试专门测试登录失败的用例，新建一个单元测试文件在原来的基础上修改。</p>
-<ol>
-<li><p>导入ddt库（Data-Driven Tests数据驱动测试库，允许通过使用不同的测试数据运行一个测试用例，根据参数的个数可以运行多个不同的测试用例）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import ddt</span><br></pre></td></tr></table></figure>
+        <h4 id="Postman常见类型的接口请求"><a href="#Postman常见类型的接口请求" class="headerlink" title="Postman常见类型的接口请求"></a>Postman常见类型的接口请求</h4><h5 id="（一）不带参数的接口请求"><a href="#（一）不带参数的接口请求" class="headerlink" title="（一）不带参数的接口请求"></a>（一）不带参数的接口请求</h5><p>没有参数，只需要考虑请求方式+网址。</p>
+<p>如天气预报接口，<a target="_blank" rel="noopener" href="http://t.weather.sojson.com/api/weather/city/101270101">http://t.weather.sojson.com/api/weather/city/101270101</a></p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230134260.png"></p>
+<h5 id="（二）带查询参数的接口请求"><a href="#（二）带查询参数的接口请求" class="headerlink" title="（二）带查询参数的接口请求"></a>（二）带查询参数的接口请求</h5><p>URL地址中问号后面的部分就叫查询参数，由键值对组成。</p>
+<p>格式为：key1&#x3D;value1&amp;key2&#x3D;value2, 如果有多组键值对，要用&amp;隔开 。</p>
+<p>请求方式是GET。</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230303839.png"></p>
+<h5 id="（三）表单类型的接口请求"><a href="#（三）表单类型的接口请求" class="headerlink" title="（三）表单类型的接口请求"></a>（三）表单类型的接口请求</h5><p>客户端提交的数据是以表单形式提交的，在请求头中查看Content-Type，它的值如果是:application&#x2F;x-www-form-urlencoded .那么就说明是表单类型。</p>
+<p>multipart&#x2F;form-data，它也属于一种表单类型，但它既支持表单请求，也支持文件上传。</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230531480.png"></p>
+<h5 id="（四）json类型的接口请求"><a href="#（四）json类型的接口请求" class="headerlink" title="（四）json类型的接口请求"></a>（四）json类型的接口请求</h5><p>请求正文&#x2F;请求体类型为json。（<a target="_blank" rel="noopener" href="http://httpbin.org/%E6%8F%90%E4%BE%9B%E5%9C%A8%E7%BA%BF%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%EF%BC%89">http://httpbin.org/提供在线接口测试服务）</a></p>
+<ul>
+<li><p>请求方法：POST</p>
 </li>
-<li><p>写入测试数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">datas=[</span><br><span class="line">    &#123;&quot;user&quot;:&quot;wang_test_12&quot;,&quot;pwd&quot;:&quot;Wang12345678&quot;,&quot;expected&quot;:&quot;请先进行验证&quot;&#125;,</span><br><span class="line">    &#123;&quot;user&quot;:&quot;wang_test_1&quot;,&quot;pwd&quot;:&quot;Wang123456789&quot;,&quot;expected&quot;:&quot;请先进行验证&quot;&#125;,</span><br><span class="line">    &#123;&quot;user&quot;:&quot;&quot;,&quot;pwd&quot;:&quot;Wang12345678&quot;,&quot;expected&quot;:&quot;请输入帐号&quot;&#125;,</span><br><span class="line">    &#123;&quot;user&quot;:&quot;wang_test_1&quot;,&quot;pwd&quot;:&quot;&quot;,&quot;expected&quot;:&quot;请输入密码&quot;&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<li><p>请求地址：<a target="_blank" rel="noopener" href="http://httpbin.org/post">http://httpbin.org/post</a></p>
 </li>
-<li><p>写入测试数据后，注意加这行代码(拆包)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@ddt.ddt()</span><br></pre></td></tr></table></figure>
+<li><p>请求体类型：json</p>
 </li>
-<li><p>在测试用例前加这行拆包</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@ddt.data(*datas)</span><br></pre></td></tr></table></figure>
+<li><p>请求体数据：{“name”:”Tim”,”age”:12}</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230700462.png"></p>
 </li>
-<li><p>在测试用例函数中修改各参数的值即可，完整代码如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import unittest</span><br><span class="line">import ddt</span><br><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">import time</span><br><span class="line">datas=[</span><br><span class="line">    &#123;&quot;user&quot;:&quot;wang_test_12&quot;,&quot;pwd&quot;:&quot;Wang12345678&quot;,&quot;expected&quot;:&quot;请先进行验证&quot;&#125;,</span><br><span class="line">    &#123;&quot;user&quot;:&quot;wang_test_1&quot;,&quot;pwd&quot;:&quot;Wang123456789&quot;,&quot;expected&quot;:&quot;请先进行验证&quot;&#125;,</span><br><span class="line">    &#123;&quot;user&quot;:&quot;&quot;,&quot;pwd&quot;:&quot;Wang12345678&quot;,&quot;expected&quot;:&quot;请输入帐号&quot;&#125;,</span><br><span class="line">    &#123;&quot;user&quot;:&quot;wang_test_1&quot;,&quot;pwd&quot;:&quot;&quot;,&quot;expected&quot;:&quot;请输入密码&quot;&#125;</span><br><span class="line">]</span><br><span class="line">@ddt.ddt()</span><br><span class="line">class MyTestCase(unittest.TestCase):</span><br><span class="line">    @classmethod</span><br><span class="line">    def setUpClass(cls) -&gt; None:</span><br><span class="line">        print(&quot;所有测试的准备工作&quot;)</span><br><span class="line">        driver = webdriver.Chrome()</span><br><span class="line">        driver.implicitly_wait(10)</span><br><span class="line">        cls.baseURL = &quot;https://www.126.com/&quot;</span><br><span class="line">        cls.driver = driver</span><br><span class="line"></span><br><span class="line">    def setUp(self) -&gt; None:</span><br><span class="line">        print(&quot;每个用例的准备工作&quot;)</span><br><span class="line">        time.sleep(2)</span><br><span class="line"></span><br><span class="line">    @ddt.data(*datas)</span><br><span class="line">    def test_login_inva(self,case):</span><br><span class="line">        &quot;登录无效用例&quot;</span><br><span class="line">        driver = self.driver</span><br><span class="line">        driver.get(self.baseURL)</span><br><span class="line">        driver.switch_to.frame(driver.find_element(By.CSS_SELECTOR, &quot;#loginDiv iframe&quot;))</span><br><span class="line">        user = driver.find_element(By.XPATH, &quot;//form[@id=&#x27;login-form&#x27;]//input[@name=&#x27;email&#x27;]&quot;)</span><br><span class="line">        user.clear()</span><br><span class="line">        user.send_keys(case[&quot;user&quot;])</span><br><span class="line">        pwd = driver.find_element(By.XPATH, &quot;//form[@id=&#x27;login-form&#x27;]//input[@name=&#x27;password&#x27;]&quot;)</span><br><span class="line">        pwd.clear()</span><br><span class="line">        pwd.send_keys(case[&quot;pwd&quot;])</span><br><span class="line">        driver.find_element(By.XPATH, &quot;//form[@id=&#x27;login-form&#x27;]//a[@id=&#x27;dologin&#x27;]&quot;).click()</span><br><span class="line">        # 捕获实际结果</span><br><span class="line">        result = driver.find_element(By.XPATH, &quot;//div[@class=&#x27;ferrorhead&#x27;]&quot;).text</span><br><span class="line">        print(result)</span><br><span class="line">        self.assertEqual(case[&quot;expected&quot;], result)</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def tearDownClass(cls) -&gt; None:</span><br><span class="line">        print(&quot;所有测试的销毁工作&quot;)</span><br><span class="line">        cls.driver.quit()</span><br><span class="line"></span><br><span class="line">    def tearDown(self) -&gt; None:</span><br><span class="line">        print(&quot;每个用例的销毁工作&quot;)</span><br><span class="line">        time.sleep(2)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    unittest.main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>由于测试次数太多，进入网站登录需要验证了，为了通过测试把expected:帐号或密码错误 修改成 expected:请先进行验证（如果需要修改的话直接改这里）</p>
-</li>
-</ol>
-<h3 id="输出测试结果图表美化"><a href="#输出测试结果图表美化" class="headerlink" title="输出测试结果图表美化"></a>输出测试结果图表美化</h3><ol>
-<li><p>导入BeautifulReport库（一个基于unittest.TestReport模块实现的测试用例模板，可以把我们每次测试中的结果通过BeautifulReport整合成一个可视化的报表）</p>
-</li>
-<li><p>调用BeautifulReport库和unittest库</p>
-</li>
-<li><p>可以自定义输出页的页名和报表的标题，以及报告的存放位置(“.”就是放在当前目录下)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from BeautifulReport import BeautifulReport</span><br><span class="line">import unittest</span><br><span class="line"></span><br><span class="line">suit=unittest.TestLoader().discover(&quot;.&quot;)</span><br><span class="line">BeautifulReport(suit).report(&quot;登录测试用例执行结果&quot;,&quot;report.html&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>输出结果展示：</p>
-<p><img src="/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/clip_image002.jpg"></p>
-</li>
-</ol>
-<p><img src="/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/image-20220507140708456.png"></p>
-<p>错误的用例是因为登录操作太多需要验证了</p>
+</ul>
 <hr>
-<p>到此为止，Selenium简单的入门级自动化测试就告一段落了。</p>
+<h4 id="接口请求代码"><a href="#接口请求代码" class="headerlink" title="接口请求代码"></a>接口请求代码</h4><p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230817955.png"></p>
+<p>如上图所示，可以生成接口请求代码</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513230900168.png"></p>
+<p>将以上代码复制到PyCharm中运行，可以得到如下运行结果</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231117209.png"></p>
+<p>接口请求代码也可以自己写，以下代码也可以返回请求报文</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231216920.png"></p>
+<h4 id="在控制台查看接口请求响应"><a href="#在控制台查看接口请求响应" class="headerlink" title="在控制台查看接口请求响应"></a>在控制台查看接口请求响应</h4><p>在Postman主界面左下角点Console</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231421271.png"></p>
+<p>可以查看请求的响应状态码</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231538254.png"></p>
+<p>还可以查看响应报头和响应正文</p>
+<p><img src="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/image-20220513231653265.png"></p>
 
     </article>
     <!-- license -->
     
         <div class="license-wrapper">
             <p>Author：<a href="http://example.com">John Doe</a>
-            <p>Link：<a href="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/">http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/</a>
-            <p>Publish date：<a href="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/">May 7th 2022, 1:38:26 pm</a>
-            <p>Update date：<a href="http://example.com/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/">May 11th 2022, 9:25:41 pm</a>
+            <p>Link：<a href="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/">http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/</a>
+            <p>Publish date：<a href="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/">May 13th 2022, 10:57:20 pm</a>
+            <p>Update date：<a href="http://example.com/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/">May 13th 2022, 11:17:00 pm</a>
             <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -562,17 +558,12 @@
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2022/05/09/DeepfaceLab%E4%B9%8B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" title="DeepfaceLab之新手入门教程">
-                    <div class="nextTitle">DeepfaceLab之新手入门教程</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2022/05/06/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/" title="Selenium自动化测试之登录页面测试用例设计">
-                    <div class="prevTitle">Selenium自动化测试之登录页面测试用例设计</div>
+                <a href="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/" title="Matplotlib库之数据集可视化">
+                    <div class="prevTitle">Matplotlib库之数据集可视化</div>
                 </a>
             
         </li>
@@ -712,7 +703,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">参数化测试用例设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">参数化测试脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%E5%9B%BE%E8%A1%A8%E7%BE%8E%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">输出测试结果图表美化</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Postman%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">Postman常见类型的接口请求</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%B8%8D%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text">（一）不带参数的接口请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B8%A6%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">（二）带查询参数的接口请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E8%A1%A8%E5%8D%95%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">（三）表单类型的接口请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89json%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">（四）json类型的接口请求</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">接口请求代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%9F%A5%E7%9C%8B%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94"><span class="toc-number">3.</span> <span class="toc-text">在控制台查看接口请求响应</span></a></li></ol>
             </div>
         
         <!-- sidebar -->

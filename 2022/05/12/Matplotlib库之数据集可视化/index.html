@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="John Doe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="John Doe">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="Pandas库（Panel Data &amp; Data Analysis） 用于数据统计和分析 可以高效、方便地操作大型数据集  安装Pandas库 进入Anaconda Prompt(Anaconda)，输入以下代码 1conda activate pytorch  激活Pytorch，然后输入 1pip install pandas  如果下载速度太慢可以换清华源下载 1pip insta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matplotlib库之数据集可视化">
+<meta property="og:url" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Pandas库（Panel Data &amp; Data Analysis） 用于数据统计和分析 可以高效、方便地操作大型数据集  安装Pandas库 进入Anaconda Prompt(Anaconda)，输入以下代码 1conda activate pytorch  激活Pytorch，然后输入 1pip install pandas  如果下载速度太慢可以换清华源下载 1pip insta">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192337419.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192700565.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192837227.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193104748.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193322483.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193454099.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193536173.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193725957.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193804904.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193848191.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194000640.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194337309.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194252422.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194510443.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194625797.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194948735.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195147174.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195326774.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194700096.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194758222.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194735960.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195534599.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195835437.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195912875.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200011555.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200150189.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200323435.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200523688.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200911805.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512201012039.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512201052274.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512201203075.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512202622822.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512203305839.png">
+<meta property="article:published_time" content="2022-05-12T11:06:14.000Z">
+<meta property="article:modified_time" content="2022-05-12T12:34:45.890Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Anaconda">
+<meta property="article:tag" content="matplotlib">
+<meta property="article:tag" content="JupyterNotebook">
+<meta property="article:tag" content="数据集可视化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192337419.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>Matplotlib库之数据集可视化 · fi3ework&#39;s Studio</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>fi3ework's Studio.</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">fi3ework&#39;s Studio.</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">Matplotlib库之数据集可视化</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                Matplotlib库之数据集可视化
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Anaconda">Anaconda</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="matplotlib">matplotlib</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JupyterNotebook">JupyterNotebook</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据集可视化">数据集可视化</a>
+    
+</div>
+
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">2.3k</span>Reading time: <span class="post-count reading-time">10 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/05/12</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="Pandas库（Panel-Data-amp-Data-Analysis）"><a href="#Pandas库（Panel-Data-amp-Data-Analysis）" class="headerlink" title="Pandas库（Panel Data &amp; Data Analysis）"></a>Pandas库（Panel Data &amp; Data Analysis）</h4><ul>
+<li>用于数据统计和分析</li>
+<li>可以高效、方便地操作大型数据集</li>
+</ul>
+<p><strong>安装Pandas库</strong></p>
+<p>进入Anaconda Prompt(Anaconda)，输入以下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate pytorch</span><br></pre></td></tr></table></figure>
+
+<p>激活Pytorch，然后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
+
+<p>如果下载速度太慢可以换清华源下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Pandas库的简单使用"><a href="#Pandas库的简单使用" class="headerlink" title="Pandas库的简单使用"></a>Pandas库的简单使用</h4><h5 id="读取csv数据"><a href="#读取csv数据" class="headerlink" title="读取csv数据"></a><strong>读取csv数据</strong></h5><ul>
+<li><p>文件名参数——filepath_or_buffer • </p>
+<ul>
+<li>pd.read_csv( filepath_or_buffer, header, names)</li>
+</ul>
+</li>
+<li><p>二维数据表——DataFrame：是一种Pandas中常用的 数据类型</p>
+</li>
+</ul>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192337419.png"></p>
+<ul>
+<li>设置列标题——header参数 <ul>
+<li>pd.read_csv( filepath_or_buffer, header, names)</li>
+</ul>
+</li>
+<li>header的取值是行号，行号从0开始 </li>
+<li>header&#x3D;0，第1行数据做为列标题(默认设置) </li>
+<li>header&#x3D;None, 没有列标题</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_iris = pd.read_csv(&quot;iris.csv&quot;,herder=0)</span><br><span class="line">#读取前5行</span><br><span class="line">df_iris.head()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192700565.png"></p>
+<ul>
+<li>header&#x3D;None，数据文件中没有表头</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_iris = pd.read_csv(&quot;iris.csv&quot;, header=None)</span><br><span class="line">df_iris.head()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512192837227.png"></p>
+<ul>
+<li>设置列标题——names参数</li>
+</ul>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193104748.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COLUMN_NAMES = [&quot;SepalLength&quot;,&#x27;SepalWidth&#x27;,&#x27;PetalLength&#x27;,&#x27;PetalWidth&#x27;,&#x27;Species&#x27;]</span><br><span class="line">df_iris = pd.read_csv(&quot;iris.csv&quot;, names=COLUMN_NAMES, header=0)</span><br><span class="line">df_iris.head()</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193322483.png"></p>
+<h5 id="访问数据"><a href="#访问数据" class="headerlink" title="访问数据"></a><strong>访问数据</strong></h5><ul>
+<li>header()函数：读取前n行数据，参数为空时，默认读取二维数据表中的前5行数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_iris.head(8)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193454099.png"></p>
+<ul>
+<li>tail()函数：读取后n行数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_iris.tail(8)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193536173.png"></p>
+<h5 id="索引和切片"><a href="#索引和切片" class="headerlink" title="索引和切片"></a><strong>索引和切片</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris[0:6]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193725957.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iris[0:6,0:4]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193804904.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iris_y=iris[:,4]</span><br><span class="line">iris_y</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512193848191.png"></p>
+<p>使用索引和切片读取索引值为10-15的行</p>
+<p><code>df_iris[10:16]</code></p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194000640.png"></p>
+<p><strong>其他常用方法</strong></p>
+<ul>
+<li><p>显示统计信息 </p>
+<ul>
+<li><p>describe()方法：显示二维数据的统计信息</p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194337309.png"></p>
+</li>
+</ul>
+</li>
+<li><p>DataFrame的常用属性：ndim、size、shape</p>
+<ul>
+<li><p>ndim：数据表的维数</p>
+</li>
+<li><p>size：数据表元素的总个数</p>
+</li>
+<li><p>shape：数据表的形状</p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194252422.png"></p>
+</li>
+</ul>
+</li>
+<li><p>转化为NumPy数组 </p>
+<ul>
+<li><p>使用NumPy中的创建数组函数array() </p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194510443.png"></p>
+</li>
+<li><p>使用DataFrame中的values方法</p>
+<p><code>iris=df_iris.values</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据集可视化"><a href="#数据集可视化" class="headerlink" title="数据集可视化"></a>数据集可视化</h4><h5 id="波士顿房价数据集"><a href="#波士顿房价数据集" class="headerlink" title="波士顿房价数据集"></a><strong>波士顿房价数据集</strong></h5><p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194625797.png"></p>
+<p>（1）读取波士顿房价数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">#读取波士顿房价数据，前13列为特征，最后一列是target</span><br><span class="line">boston_housing = pd.read_csv(&quot;boston_house_prices.csv&quot;, header=0)</span><br><span class="line">print(boston_housing)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194948735.png"></p>
+<p>（2）为了找出影响房价的主要因素，可以借助数据可视化方法<br>最简单的可视化方法就是借助散点图将每个属性与房价的关系表示出来<br>首先看看如何绘制单个属性与房价的散点图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#转化为Numpy数组</span><br><span class="line">import numpy as np</span><br><span class="line">housing = np.array(boston_housing)</span><br><span class="line">#y为数据中的想要预测的目标数据</span><br><span class="line">target = housing[:,13]</span><br><span class="line">#x为数据中的13个特征数据的所有值</span><br><span class="line">features = housing[:, :13]</span><br></pre></td></tr></table></figure>
+
+<p>（3）绘制散点图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#平均房间数与房价之间的关系</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">plt.figure(figsize=(5,5))</span><br><span class="line">plt.scatter(features[:, 5], target)</span><br><span class="line">plt.xlabel(&quot;RM&quot;)</span><br><span class="line">plt.ylabel(&quot;Price($1000&#x27;s)&quot;)</span><br><span class="line">plt.title(&quot;5. RM-Price&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195147174.png"></p>
+<p>可以看出平均房间数和房价的关系整体趋于房间数量越多，房价越高</p>
+<p>（4）将所有属性与房价之间的关系可视化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[&quot;font.family&quot;] = &quot;SimHei&quot;</span><br><span class="line">plt.rcParams[&quot;axes.unicode_minus&quot;] = False</span><br><span class="line"></span><br><span class="line">#设置标题字段</span><br><span class="line">titles = [&quot;CRIM&quot;, &quot;ZN&quot;, &quot;INDUS&quot;, &quot;CHAS&quot;, &quot;NOX&quot;, &quot;RM&quot;,&quot;AGE&quot;,</span><br><span class="line">          &quot;DIS&quot;,&quot;RAD&quot;,&quot;TAX&quot;,&quot;PTRATIO&quot;,&quot;B&quot;,&quot;LSTAT&quot;]</span><br><span class="line"></span><br><span class="line">#设置画布大小</span><br><span class="line">plt.figure(figsize=(12,12))</span><br><span class="line"></span><br><span class="line">#循环创建散点图</span><br><span class="line">#划分画布为4×4的子图</span><br><span class="line">for i in range(13):</span><br><span class="line">    plt.subplot(4,4,(i+1))</span><br><span class="line">    plt.scatter(features[:, i], target)</span><br><span class="line">    plt.xlabel(titles[i])</span><br><span class="line">    plt.ylabel(&quot;Price($1000&#x27;s)&quot;)</span><br><span class="line">    plt.title(str(i+1)+&quot;.&quot;+titles[i]+&quot;-Price&quot;)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.suptitle(&quot;各个属性与房价的关系&quot;, x=0.5, y=1.02, fontsize=20)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195326774.png"></p>
+<p>可以看出，一氧化碳浓度（NOX），平均房间数（RM），低收入人口比例（LSTAT）与房间有比较明显的关系，而其他一些属性对房价好像没有明显的影响。</p>
+<h5 id="鸢尾花数据集"><a href="#鸢尾花数据集" class="headerlink" title="鸢尾花数据集"></a><strong>鸢尾花数据集</strong></h5><p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194700096.png"></p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194758222.png"></p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512194735960.png"></p>
+<p>（1）读取鸢尾花数据集，数据集一共150个样本，4个属性，1个标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">COLUMN_NAMES = [&quot;SepalLength&quot;, &#x27;SepalWidth&#x27;, &#x27;PetalLength&#x27;, &#x27;PetalWidth&#x27;, &#x27;Species&#x27;]</span><br><span class="line">df_iris = pd.read_csv( &quot;iris.csv&quot;, names=COLUMN_NAMES, header=0)</span><br><span class="line">print(df_iris)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195534599.png"></p>
+<p>（2）绘制花瓣长宽散点图， 横坐标是花瓣长度，列坐标是花瓣宽度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#转化为Numpy数组</span><br><span class="line">import numpy as np</span><br><span class="line">iris=np.array(df_iris)</span><br><span class="line">#切片获得花瓣长度</span><br><span class="line">iris[:,2]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195835437.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#花瓣宽度</span><br><span class="line">iris[:,3]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512195912875.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">plt.scatter(iris[:,2],iris[:,3])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200011555.png"></p>
+<p>虽然散点图被绘制出来，但是不同类型的鸢尾花并没有被区分开，我们希望不同种类的鸢尾花使用不同的颜色，使用鸢尾花的种类作为颜色映射的依据</p>
+<p>（3）添加标题和坐标轴标签<br>标题中，换行显示对颜色的说明<br>蓝色是山鸢尾，红色是变色鸢尾，绿色代表维吉尼亚鸢尾<br>标签直接从列标题中得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(iris[:,2],iris[:,3],c=iris_y,cmap=&#x27;brg&#x27;)</span><br><span class="line">plt.title(&quot;Anderson&#x27;s Iris Data Set\n(Bule-&gt;Setosa | Red-&gt;Versicolor | Green-&gt;Virginica&quot;)</span><br><span class="line">plt.xlabel(COLUMN_NAMES[2])</span><br><span class="line">plt.ylabel(COLUMN_NAMES[3])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200150189.png"></p>
+<p>可以看出，花瓣最长、最短的是山鸢尾，花瓣最长、最宽的是维吉尼亚鸢尾，花瓣尺寸居中的是变色鸢尾，可视化后的数据更加直观，清晰。<br>使用花瓣长宽可以比较好的区分出鸢尾花，那么使用其他属性是否能够很好区分鸢尾花呢？</p>
+<p>鸢尾花中有4个属性，将每个属性两两组合可以得到16种组合，这些组合中，有4个组合是每个属性和它本身进行组合，另外12种组合两两对称，如何要把16种组合绘制在一张图中，其实只有6种组合。<br>我们先来看看这个图的第一行的4个子图如何绘制。这4个子图的纵坐标都是iris数组种的第一个属性，索引值为0，横坐标依次取到索引值为0，1，2，3的属性。</p>
+<p>（4）划分画布为一行四列的子图区域，循环绘制子图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(&#x27;Iris Data&#x27;, figsize=(15, 3))</span><br><span class="line">plt.suptitle(&quot;Anderson&#x27;s Iris Data Set\n(Bule-&gt;Setosa | Red-&gt;Versicolor | Green-&gt;Virginica&quot;)</span><br><span class="line">for i in range(4):</span><br><span class="line">    plt.subplot(1, 4, i+1)</span><br><span class="line">    #当i=0是，在绘图区域显示本行属性名</span><br><span class="line">    if(i==0):</span><br><span class="line">        plt.text(0.3,0.5,COLUMN_NAMES[0],fontsize=15)</span><br><span class="line">    else:</span><br><span class="line">        plt.scatter(iris[:,i],iris[:,0],c=iris_y,cmap=&#x27;brg&#x27;)</span><br><span class="line">   </span><br><span class="line">    plt.title(COLUMN_NAMES[i])</span><br><span class="line">    plt.ylabel(COLUMN_NAMES[0])</span><br><span class="line">#调整子图间距</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200323435.png"></p>
+<p>接着绘制包含4×4子图的大图，只要将之前绘制一行子图的代码再循环执行4次即可。<br>第一层循环每次绘制一行子图，第二层循环每次绘制一行子图中的4个子图。 子图序号可以表示为4×i+(j+1)</p>
+<p>（5）绘出所有子图，实现数据可视化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(&#x27;Iris Data&#x27;, figsize=(15, 15))</span><br><span class="line">plt.suptitle(&quot;Anderson&#x27;s Iris Data Set\n(Bule-&gt;Setosa | Red-&gt;Versicolor | Green-&gt;Virginica&quot;)</span><br><span class="line">for i in range(4):</span><br><span class="line">    for j in range(4):</span><br><span class="line">        plt.subplot(4, 4, 4*i+(j+1))</span><br><span class="line">        #当i=j时，在绘图区域输出当前属性的名称</span><br><span class="line">        if(i==j):</span><br><span class="line">            plt.text(0.3,0.4,COLUMN_NAMES[i],fontsize=15)</span><br><span class="line">        else:</span><br><span class="line">            plt.scatter(iris[:,j],iris[:,i],c=iris_y,cmap=&#x27;brg&#x27;)</span><br><span class="line">        if(i==0):</span><br><span class="line">            #子图标题输出当前横坐标的属性名称，作为所有行的横坐标标签</span><br><span class="line">            plt.title(COLUMN_NAMES[j])</span><br><span class="line">        if(j==0):</span><br><span class="line">            plt.ylabel(COLUMN_NAMES[i])</span><br><span class="line"></span><br><span class="line">#调整子图间距</span><br><span class="line">plt.tight_layout()          </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200523688.png"></p>
+<p>可以看出，通过花瓣花萼的属性的任何组合，都能够很容易地将山鸢尾和另外两种鸢尾花区分开来，而变色鸢尾和维吉尼亚鸢尾通过花瓣属性能够比较容易区分，通过花萼属性则不能明显区分。</p>
+<h5 id="帕尔默企鹅数据集（一）"><a href="#帕尔默企鹅数据集（一）" class="headerlink" title="帕尔默企鹅数据集（一）"></a>帕尔默企鹅数据集（一）</h5><p>（1）读取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">df_penguins = pd.read_csv(&quot;penguins_size.csv&quot;)</span><br><span class="line">print(df_penguins.info())</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512200911805.png"></p>
+<p>（2）数据可视化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">df_penguins = df_penguins.fillna(-1)</span><br><span class="line">df_penguins = df_penguins[[&#x27;species&#x27;,&#x27;island&#x27;,&#x27;culmen_length_mm&#x27;,&#x27;culmen_depth_mm&#x27;,&#x27;flipper_length_mm&#x27;,&#x27;body_mass_g&#x27;,&#x27;sex&#x27;]]</span><br><span class="line">sns.pairplot(data=df_penguins, diag_kind=&#x27;hist&#x27;,hue=&#x27;species&#x27;)</span><br><span class="line">plt.suptitle(&quot;penguins sorted by species&quot;)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512201012039.png"></p>
+<h5 id="帕尔默企鹅数据集（二）"><a href="#帕尔默企鹅数据集（二）" class="headerlink" title="帕尔默企鹅数据集（二）"></a>帕尔默企鹅数据集（二）</h5><p>（1）读取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">df_lter = pd.read_csv(&quot;penguins_lter.csv&quot;)</span><br><span class="line">print(df_lter.info())</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512201052274.png"></p>
+<p>（2）数据可视化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">df_lter = df_lter.fillna(-1)</span><br><span class="line">df_lter = df_lter[[&#x27;Species&#x27;,&#x27;Island&#x27;,&#x27;Region&#x27;,&#x27;Culmen Length (mm)&#x27;,&#x27;Culmen Depth (mm)&#x27;,&#x27;Flipper Length (mm)&#x27;]]</span><br><span class="line">sns.pairplot(data=df_lter, diag_kind=&#x27;hist&#x27;,hue=&#x27;Region&#x27;)</span><br><span class="line">plt.suptitle(&quot;Penguins sorted by Region&quot;)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512201203075.png"></p>
+<hr>
+<h4 id="Jupyter-Notebook更改文件存储位置"><a href="#Jupyter-Notebook更改文件存储位置" class="headerlink" title="Jupyter Notebook更改文件存储位置"></a>Jupyter Notebook更改文件存储位置</h4><ol>
+<li><p>找到配置文件</p>
+<ul>
+<li>打开Anaconda Prompt</li>
+<li>输入<code>jupyter notebook --generate-config</code></li>
+<li>根据显示的路径用记事本打开jupyter_notebook_config.py</li>
+</ul>
+<p>	</p>
+</li>
+<li><p>更改配置</p>
+<ul>
+<li>找到这行代码<code>#c.NotebookApp.notebook_dir = &#39;&#39;</code></li>
+<li>去掉前面的”#”，在’ ‘中写入新的存放路径（路径不要出现中文，否则可能报错），修改完后保存退出</li>
+</ul>
+</li>
+<li><p>修改Jupyter Notebook属性</p>
+<ul>
+<li><p>找到Jupyer Notebook图标，右键单击打开属性面板</p>
+</li>
+<li><p>属性面板中选择快捷方式，修改目标中的路径，将后面的”%USERPROFILE%&#x2F;“去掉，最后如下图所示</p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512202622822.png"></p>
+</li>
+<li><p>重启Jupyter Notebook，可以看到文件存放的根目录已经更改为刚才修改的路径</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="Jupyter-Notebook导出-py文件"><a href="#Jupyter-Notebook导出-py文件" class="headerlink" title="Jupyter Notebook导出.py文件"></a>Jupyter Notebook导出.py文件</h4><p>在Jupyter Notebook写完代码后发现文件后缀是.ipynb格式，想导出.py格式的文件，只需要</p>
+<p><img src="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/image-20220512203305839.png"></p>
+<p>如上图所示操作即可</p>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="http://example.com">John Doe</a>
+            <p>Link：<a href="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/">http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/</a>
+            <p>Publish date：<a href="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/">May 12th 2022, 7:06:14 pm</a>
+            <p>Update date：<a href="http://example.com/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/">May 12th 2022, 8:34:45 pm</a>
+            <p>License：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/" title="Postman之常见接口请求">
+                    <div class="nextTitle">Postman之常见接口请求</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/05/11/Hexo%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="Hexo图片显示问题解决">
+                    <div class="prevTitle">Hexo图片显示问题解决</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/example_qr.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pandas%E5%BA%93%EF%BC%88Panel-Data-amp-Data-Analysis%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Pandas库（Panel Data &amp; Data Analysis）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pandas%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Pandas库的简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96csv%E6%95%B0%E6%8D%AE"><span class="toc-number">2.1.</span> <span class="toc-text">读取csv数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.</span> <span class="toc-text">访问数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="toc-number">2.3.</span> <span class="toc-text">索引和切片</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">数据集可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A2%E5%A3%AB%E9%A1%BF%E6%88%BF%E4%BB%B7%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">3.1.</span> <span class="toc-text">波士顿房价数据集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">3.2.</span> <span class="toc-text">鸢尾花数据集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%95%E5%B0%94%E9%BB%98%E4%BC%81%E9%B9%85%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">帕尔默企鹅数据集（一）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%95%E5%B0%94%E9%BB%98%E4%BC%81%E9%B9%85%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">帕尔默企鹅数据集（二）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Jupyter-Notebook%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">Jupyter Notebook更改文件存储位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Jupyter-Notebook%E5%AF%BC%E5%87%BA-py%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">Jupyter Notebook导出.py文件</span></a></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 13
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span>
+            <a class="archive-post-title" href="/2022/05/13/Postman%E4%B9%8B%E5%B8%B8%E8%A7%81%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82/">Postman之常见接口请求</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span>
+            <a class="archive-post-title" href="/2022/05/12/Matplotlib%E5%BA%93%E4%B9%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%AF%E8%A7%86%E5%8C%96/">Matplotlib库之数据集可视化</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span>
+            <a class="archive-post-title" href="/2022/05/11/Hexo%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">Hexo图片显示问题解决</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span>
+            <a class="archive-post-title" href="/2022/05/11/Fiddler%E6%8A%93%E5%8C%85%E5%8F%8APostman%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/">Fiddler抓包及Postman初步使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span>
+            <a class="archive-post-title" href="/2022/05/10/Matplotlib%E5%BA%93%E4%B9%8B%E7%AE%80%E5%8D%95%E5%9B%BE%E8%A1%A8%E7%BB%98%E5%88%B6/">Matplotlib库之简单图表绘制</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span>
+            <a class="archive-post-title" href="/2022/05/09/DeepfaceLab%E4%B9%8B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">DeepfaceLab之新手入门教程</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span>
+            <a class="archive-post-title" href="/2022/05/07/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95/">Selenium自动化测试之登录页面参数化测试</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span>
+            <a class="archive-post-title" href="/2022/05/06/Selenium%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B9%8B%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/">Selenium自动化测试之登录页面测试用例设计</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span>
+            <a class="archive-post-title" href="/2022/05/05/Anaconda%E4%B9%8Bmatplotlib%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8ARead-timed-out-Error%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">Anaconda之matplotlib库的安装及Read timed out Error解决方案</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span>
+            <a class="archive-post-title" href="/2022/05/04/Hexo%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E6%8C%87%E4%BB%A4/">Hexo更新博客指令</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span>
+            <a class="archive-post-title" href="/2022/05/03/BlogSecond/">Hexo + GitHubPages搭建个人博客</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span>
+            <a class="archive-post-title" href="/2022/05/03/Hexo+GitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo + GitHubPages搭建个人博客</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span>
+            <a class="archive-post-title" href="/2022/05/03/hello-world/">Hello World</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="Anaconda">
+                <span class="iconfont-archer">&#xe606;</span>
+                Anaconda
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="matplotlib">
+                <span class="iconfont-archer">&#xe606;</span>
+                matplotlib
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="DeepFaceLab">
+                <span class="iconfont-archer">&#xe606;</span>
+                DeepFaceLab
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Fiddler">
+                <span class="iconfont-archer">&#xe606;</span>
+                Fiddler
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Postman">
+                <span class="iconfont-archer">&#xe606;</span>
+                Postman
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JupyterNotebook">
+                <span class="iconfont-archer">&#xe606;</span>
+                JupyterNotebook
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据集可视化">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据集可视化
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Selenium">
+                <span class="iconfont-archer">&#xe606;</span>
+                Selenium
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://example.com",
+        root: siteMetaRoot,
+        author: "John Doe"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>

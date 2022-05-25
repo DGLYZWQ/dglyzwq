@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="人工智能导论知识点整理笔记一">
+<meta property="og:url" content="http://example.com/2022/05/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86%E7%AC%94%E8%AE%B0%E4%B8%80/index.html">
+<meta property="og:site_name" content="dGlyZWQ&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-24T11:52:15.000Z">
+<meta property="article:modified_time" content="2022-05-25T12:01:07.478Z">
+<meta property="article:author" content="dglyzwq">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/05/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86%E7%AC%94%E8%AE%B0%E4%B8%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>人工智能导论知识点整理笔记一 | dGlyZWQ's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">dGlyZWQ's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">I'm a Pro, as in Procrastinator.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/DGLYZWQ" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/24/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86%E7%AC%94%E8%AE%B0%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="dglyzwq">
+      <meta itemprop="description" content="null">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dGlyZWQ's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          人工智能导论知识点整理笔记一
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-24 19:52:15" itemprop="dateCreated datePublished" datetime="2022-05-24T19:52:15+08:00">2022-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-25 20:01:07" itemprop="dateModified" datetime="2022-05-25T20:01:07+08:00">2022-05-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">人工智能导论</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分钟</span>
+            </span>
+            <div class="post-description">前四章知识点总结</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h2 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h2><!--more-->
+
+<h3 id="1-1-人工智能的基本概念"><a href="#1-1-人工智能的基本概念" class="headerlink" title="1.1  人工智能的基本概念"></a>1.1  人工智能的基本概念</h3><h4 id="1-1-1-智能的概念"><a href="#1-1-1-智能的概念" class="headerlink" title="1.1.1  智能的概念"></a>1.1.1  智能的概念</h4><p>（1）知识阈值理论</p>
+<p>知识阈值理论把智能定义为：<strong>智能</strong>就是在巨大的搜索空间中迅速找到一个满意解的能力。</p>
+<p>智能是知识与智力的总和。其中，知识是一切智能行为的基础，而智力是获取知识并应用知识求解问题的能力。</p>
+<h4 id="1-1-2-智能的特征"><a href="#1-1-2-智能的特征" class="headerlink" title="1.1.2  智能的特征"></a>1.1.2  智能的特征</h4><ol>
+<li><p>具有感知能力</p>
+<p> 感知能力是指通过视觉、听觉、触觉、嗅觉、味觉等感觉器官感知外部世界的能力。</p>
+</li>
+<li><p>具有记忆与思维能力</p>
+</li>
+<li><p>具有学习能力</p>
+</li>
+<li><p>具有行为能力</p>
+</li>
+</ol>
+<h4 id="1-1-2-人工智能"><a href="#1-1-2-人工智能" class="headerlink" title="1.1.2  人工智能"></a>1.1.2  人工智能</h4><p>图灵测试是衡量机器智能的准则。</p>
+<p>人工智能是一门研究如何构造智能机器（智能计算机）或智能系统，使它能模拟、延伸、扩展人类智能的学科。</p>
+<h3 id="1-2-人工智能的发展简史"><a href="#1-2-人工智能的发展简史" class="headerlink" title="1.2 人工智能的发展简史"></a>1.2 人工智能的发展简史</h3><h4 id="1-2-1-孕育"><a href="#1-2-1-孕育" class="headerlink" title="1.2.1 孕育"></a>1.2.1 孕育</h4><p>美国艾奥瓦州立大学的阿塔纳索夫教授和他的研究生贝瑞在1937年至1941年间开发的世界上第一台电子计算机”阿塔纳索夫—贝瑞计算机(Atanasoff-Berry computer, ABC)”为人工智能的研究奠定了物质基础。</p>
+<h4 id="1-2-2-形成"><a href="#1-2-2-形成" class="headerlink" title="1.2.2 形成"></a>1.2.2 形成</h4><p>1956年夏季，由麦卡锡、明斯基、香农共同发起，邀请莫尔、塞缪尔、塞尔夫里奇等人在美国达特茅斯学院召开了一次为时两个月的学术研讨会，讨论关于机器智能的问题。它标志着人工智能作为一门新兴学科正式诞生了。</p>
+<p>在专家系统方面，美国斯坦福大学的费根鲍姆领导的研究小组自1965年开始专家系统DENDRAL的研究，1968年完成并投入使用。</p>
+<p>在人工智能语言方面，1960年麦卡锡研制出了人工智能语言LISP，成为建造专家系统的重要工具。</p>
+<h4 id="1-2-3-发展"><a href="#1-2-3-发展" class="headerlink" title="1.2.3 发展"></a>1.2.3 发展</h4><p>1997年5月3日至11日，深蓝再次挑战卡斯帕罗夫。深蓝以 3.5 : 2.5 的总比分赢得了这场“人机大战”的胜利。</p>
+<p>2017年5月23-27日，在乌镇，AlphaGo Master以 3 : 0 轻松击败围棋排名世界第一的柯洁。</p>
+<h4 id="1-2-4-大数据驱动人工智能发展期"><a href="#1-2-4-大数据驱动人工智能发展期" class="headerlink" title="1.2.4 大数据驱动人工智能发展期"></a>1.2.4 大数据驱动人工智能发展期</h4><p>人工智能大体可分为专用人工智能和通用人工智能。</p>
+<h3 id="1-3-人工智能研究的基本内容"><a href="#1-3-人工智能研究的基本内容" class="headerlink" title="1.3 人工智能研究的基本内容"></a>1.3 人工智能研究的基本内容</h3><ol>
+<li>知识表示</li>
+<li>机器感知</li>
+<li>机器思维</li>
+<li>机器学习</li>
+<li>机器行为</li>
+</ol>
+<h3 id="1-4-人工智能主要研究领域"><a href="#1-4-人工智能主要研究领域" class="headerlink" title="1.4 人工智能主要研究领域"></a>1.4 人工智能主要研究领域</h3><ol>
+<li>自动定理证明</li>
+<li>博弈</li>
+<li>模式识别</li>
+<li>机器视觉</li>
+<li>自然语言理解</li>
+<li>智能信息检索</li>
+<li>数据挖掘与知识发现</li>
+<li>专家系统</li>
+<li>自动程序设计</li>
+<li>机器人</li>
+<li>组合优化问题</li>
+<li>人工神经网络</li>
+<li>分布式人工智能与多智能体</li>
+<li>智能控制</li>
+<li>智能仿真</li>
+<li>智能CAD</li>
+<li>智能CAI</li>
+<li>智能管理与智能决策</li>
+<li>智能多媒体系统</li>
+<li>智能操作系统</li>
+<li>智能计算机系统</li>
+<li>智能通信</li>
+<li>智能网络系统</li>
+<li>人工生命</li>
+</ol>
+<h2 id="第二章-知识表示与知识图谱"><a href="#第二章-知识表示与知识图谱" class="headerlink" title="第二章 知识表示与知识图谱"></a>第二章 知识表示与知识图谱</h2><h3 id="2-1-知识与知识表示的概念"><a href="#2-1-知识与知识表示的概念" class="headerlink" title="2.1 知识与知识表示的概念"></a>2.1 知识与知识表示的概念</h3><h4 id="2-1-1-知识的概念"><a href="#2-1-1-知识的概念" class="headerlink" title="2.1.1 知识的概念"></a>2.1.1 知识的概念</h4><p>一般来说，把有关信息关联在一起所形成的信息结构称为知识。</p>
+<h4 id="2-1-2-知识的特性"><a href="#2-1-2-知识的特性" class="headerlink" title="2.1.2 知识的特性"></a>2.1.2 知识的特性</h4><ol>
+<li>相对正确性</li>
+<li>不确定性<ol>
+<li>由随机性引起的不确定性</li>
+<li>由模糊性引起的不确定性</li>
+<li>由经验引起的不确定性</li>
+<li>由不完全性引起的不确定性</li>
+</ol>
+</li>
+<li>可表示性与可利用性</li>
+</ol>
+<h4 id="2-1-3-知识的表示"><a href="#2-1-3-知识的表示" class="headerlink" title="2.1.3 知识的表示"></a>2.1.3 知识的表示</h4><p>知识表示就是将人类知识形式化或者模型化。</p>
+<h3 id="2-2-一阶谓词逻辑表示法"><a href="#2-2-一阶谓词逻辑表示法" class="headerlink" title="2.2 一阶谓词逻辑表示法"></a>2.2 一阶谓词逻辑表示法</h3><h4 id="2-2-1-命题"><a href="#2-2-1-命题" class="headerlink" title="2.2.1 命题"></a>2.2.1 命题</h4><p>定义：命题是一个非真即假的陈述句。</p>
+<h4 id="2-2-2-谓词"><a href="#2-2-2-谓词" class="headerlink" title="2.2.2 谓词"></a>2.2.2 谓词</h4><p>谓词的一般形式是：  P(x1,x2,…xN)</p>
+<p>其中，P是谓词名，x1,x2,…,xN是个体。</p>
+<p>谓词中包含的个体数目称为谓词的<strong>元数</strong>。P(x)是一元谓词，P(x,y)是二元谓词，P(x1,x2,…,xN)是N元谓词。</p>
+<p>在谓词中，个体可以是常量，也可以是变元，还可以是一个函数。</p>
+<p>在谓词P(x1,x2,…,xN)中，若x(i&#x3D;1,…,N)都是个体常量、变元或函数，称它为一阶谓词。</p>
+<h4 id="2-2-3-谓词公式"><a href="#2-2-3-谓词公式" class="headerlink" title="2.2.3 谓词公式"></a>2.2.3 谓词公式</h4><ol>
+<li><p>连接词（连词）</p>
+<ol>
+<li><p>￢：称为”否定”或者”非”。它表示否定位于它后面的命题。</p>
+</li>
+<li><p>∨：称为”析取”。它表示被它连接的两个命题具有”或”关系。</p>
+</li>
+<li><p>∧：称为”合取”。它表示它连接的两个命题具有”与”关系。</p>
+</li>
+<li><p>→：称为”蕴涵”或者”条件”。P→Q表示”P蕴涵Q”，即表示”如果P，则Q”。其中，P称为条件的前件，Q称为条件的后件。</p>
+<p>注意：只有前项为真，后项为假时，蕴涵才为假，其余均为真。</p>
+</li>
+<li><p>↔：称为”等价”或”双条件”。P↔Q表示”P当且仅当Q”。</p>
+<div align="center">谓词逻辑真值表</div>
+
+<table>
+<thead>
+<tr>
+<th>P</th>
+<th>Q</th>
+<th>¬P</th>
+<th>P∨Q</th>
+<th>P∧Q</th>
+<th>P→Q</th>
+<th>P↔Q</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+<li><p>量词</p>
+<ol>
+<li><p>全称量词(∀<em>x</em>)：表示”对个体域中的所有（或任一个）个体x”。</p>
+</li>
+<li><p>存在量词(∃<em>x</em>)：表示”在个体域中存在个体x”。</p>
+<p>全称量词和存在量词可以出现在同一个命题中。例如，设谓词F(x,y)表示x与y是朋友，则：</p>
+<p>(∀<em>x</em>)(∃<em>y</em>)F(x,y)表示对于个体域中的任何个体x都存在个体y，x与y是朋友。</p>
+<p>(∃<em>x</em>)(∀<em>y</em>)F(x,y)表示在个体域中存在个体x，与个体域中的任何个体y都是朋友。</p>
+<p>(∃<em>x</em>)(∃<em>y</em>)F(x,y)表示在个体域中存在个体x与个体y，x与y是朋友。</p>
+<p>(∀<em>x</em>)(∀<em>y</em>)F(x,y)表示对于个体域中的任何两个个体x和y，x与y都是朋友。</p>
+<p>当全称量词和存在量词出现在同一个命题中时，这时量词的次序将影响命题的意思。例如：</p>
+<p>(∀<em>x</em>)(∃<em>y</em>)(Employee(x)→Manager(y,x))表示”每个雇员都有一个经理”；</p>
+<p>(∃<em>y</em>)(∀<em>x</em>)(Employee(x)→Manager(y,x))表示”有一个人是所有雇员的经理”。</p>
+<p>(∀<em>x</em>)(∃<em>y</em>)Love(x,y)表示”每个人都有喜欢的人”;</p>
+<p>(∃<em>y</em>)(∀<em>x</em>)Love(x,y)表示”有的人大家都喜欢他”。</p>
+</li>
+</ol>
+</li>
+<li><p>谓词公式</p>
+<p>单个谓词是谓词公式，称为<strong>原子谓词公式</strong>。</p>
+<p>在谓词公式中，连接词的优先级别<strong>从高到低</strong>排列是：￢，∧，∨，→，↔</p>
+</li>
+<li><p>量词的辖域</p>
+<p>位于量词后面的单个谓词或者用括弧括起来的谓词公式称为<strong>量词的辖域</strong>，辖域内与量词中同名的变元称为<strong>约束变元</strong>，不受约束的变元称为<strong>自由变元</strong>。</p>
+</li>
+</ol>
+<h4 id="2-2-4-谓词公式的性质"><a href="#2-2-4-谓词公式的性质" class="headerlink" title="2.2.4 谓词公式的性质"></a>2.2.4 谓词公式的性质</h4><p>可满足性和不可满足性：对于谓词公式P，如果至少存在一个解释使得公式P在此解释下的真值为T，则称公式P是可满足的，否则，则称公式P是不可满足的。</p>
+<h4 id="2-2-5-一阶谓词逻辑知识表示方法"><a href="#2-2-5-一阶谓词逻辑知识表示方法" class="headerlink" title="2.2.5 一阶谓词逻辑知识表示方法"></a>2.2.5 一阶谓词逻辑知识表示方法</h4><p>用谓词公式表示知识的一般步骤为：</p>
+<ol>
+<li>定义谓词及个体，确定每个谓词及个体的确切定义。</li>
+<li>根据要表达的事物或概念，为谓词中的变元赋以特定的值。</li>
+<li>根据语义用适当的连接符号将各个谓词连接起来，形成谓词公式。</li>
+</ol>
+<h4 id="2-2-6-一阶谓词逻辑表示法的特点"><a href="#2-2-6-一阶谓词逻辑表示法的特点" class="headerlink" title="2.2.6 一阶谓词逻辑表示法的特点"></a>2.2.6 一阶谓词逻辑表示法的特点</h4><p>一阶谓词逻辑表示法的优点：</p>
+<ol>
+<li>自然性</li>
+<li>精确性</li>
+<li>严密性</li>
+<li>容易实现</li>
+</ol>
+<h3 id="2-3-产生式表示法"><a href="#2-3-产生式表示法" class="headerlink" title="2.3 产生式表示法"></a>2.3 产生式表示法</h3><h4 id="2-3-1-产生式"><a href="#2-3-1-产生式" class="headerlink" title="2.3.1 产生式"></a>2.3.1 产生式</h4><ol>
+<li><p>确定性规则知识的产生式表示</p>
+<p>IF    P      THEN      Q         或者        P→Q</p>
+</li>
+<li><p>不确定性规则知识的产生式表示</p>
+<p>IF     P     THEN    Q（置信度）   或者      P→Q(置信度)</p>
+</li>
+</ol>
+<p>产生式与谓词逻辑中的蕴涵式的基本形式相同，但蕴含式只是产生式的一种特殊情况，理由有如下两点：</p>
+<ol>
+<li>除逻辑蕴涵外，产生式还包括各种操作、规则、变换、算子、函数等。</li>
+<li>蕴含式只能表示确定性知识，其真值或者为真，或者为假，而产生式不仅可以表示确定性的知识，而且还可以表示不确定性知识。</li>
+</ol>
+<h4 id="2-3-2-产生式系统"><a href="#2-3-2-产生式系统" class="headerlink" title="2.3.2 产生式系统"></a>2.3.2 产生式系统</h4><p>一般来说，一个产生式系统由规则库、控制系统（推理机）、综合数据库三部分组成。</p>
+<h4 id="2-3-3-产生式表示法的特点"><a href="#2-3-3-产生式表示法的特点" class="headerlink" title="2.3.3 产生式表示法的特点"></a>2.3.3 产生式表示法的特点</h4><ol>
+<li>产生式表示法的主要优点<ol>
+<li>自然性</li>
+<li>模块性</li>
+<li>有效性</li>
+<li>清晰性</li>
+</ol>
+</li>
+<li>产生式表示法的主要缺点<ol>
+<li>效率不高</li>
+<li>不能表达具有结构性的知识</li>
+</ol>
+</li>
+<li>产生式表示法适合表示的知识<ol>
+<li>由许多相对独立的知识元组成的领域知识，彼此间关系不密切，不存在结构关系，如化学反应方面的知识。</li>
+<li>具有经验性的不确定性的知识，而且相关领域中对这些知识没有严格、统一的理论、如医疗诊断、故障诊断等方面的知识。</li>
+<li>领域问题的求解过程可被表示为一系列相对独立的操作，而且每个操作可被表示为一条或多条产生式规则。</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-4-框架表示法"><a href="#2-4-框架表示法" class="headerlink" title="2.4 框架表示法"></a>2.4 框架表示法</h3><h4 id="2-4-1-框架的一般结构"><a href="#2-4-1-框架的一般结构" class="headerlink" title="2.4.1 框架的一般结构"></a>2.4.1 框架的一般结构</h4><p>框架是一种描述所论对象（一个事物、事件或概念）属性的数据结构。</p>
+<h4 id="2-4-2-框架表示法的特点"><a href="#2-4-2-框架表示法的特点" class="headerlink" title="2.4.2 框架表示法的特点"></a>2.4.2 框架表示法的特点</h4><ol>
+<li>结构性</li>
+<li>继承性</li>
+<li>自然性</li>
+</ol>
+<h2 id="第三章-确定性推理方法"><a href="#第三章-确定性推理方法" class="headerlink" title="第三章 确定性推理方法"></a>第三章 确定性推理方法</h2><h3 id="3-1-推理的基本概念"><a href="#3-1-推理的基本概念" class="headerlink" title="3.1 推理的基本概念"></a>3.1 推理的基本概念</h3><h4 id="3-1-1-推理方式及其分类"><a href="#3-1-1-推理方式及其分类" class="headerlink" title="3.1.1 推理方式及其分类"></a>3.1.1 推理方式及其分类</h4><ol>
+<li><p>确定性推理、不确定性推理</p>
+<p>所谓确定性推理是指推理时所用的知识与证据都是确定的，推出的结论也是确定的，其真值或者为真或者为假，没有第三种情况出现。</p>
+<p>所谓不确定性推理是指推理时所用的知识与证据不都是确定的，推出的结论也是不确定的。</p>
+</li>
+<li><p>启发式推理、非启发式推理</p>
+<p>如果推理过程中运用与推理有关的启发式知识，则称为启发式推理，否则称为非启发式推理。</p>
+</li>
+</ol>
+<h3 id="3-2-谓词公式化为子句集的方法"><a href="#3-2-谓词公式化为子句集的方法" class="headerlink" title="3.2 谓词公式化为子句集的方法"></a>3.2 谓词公式化为子句集的方法</h3><p>原子谓词公式及其否定，统称为文字。</p>
+<p>任何文字的析取式称为子句。任何文字本身也是子句。</p>
+<p>由于空子句不含有文字，它不能被任何解释满足，所以，空子句是永假的、不可满足的。</p>
+<p>谓词公式化为子句集的步骤：</p>
+<ol>
+<li>消去谓词公式中的”→”和”↔”符号</li>
+<li>把否定符号移到紧靠谓词的位置上</li>
+<li>变量标准化</li>
+<li>消去存在量词</li>
+<li>化为前束形</li>
+<li>化为Skolem标准形</li>
+<li>略去全称量词</li>
+<li>消去合取词，把母式用子句集表示</li>
+<li>子句变量标准化，即使每个子句中的变量符号不同</li>
+</ol>
+<h3 id="3-3-归结反演"><a href="#3-3-归结反演" class="headerlink" title="3.3 归结反演"></a>3.3 归结反演</h3><p>归结反演的一般步骤是：</p>
+<ol>
+<li>将已知前提表示为谓词公式F；</li>
+<li>将待证明的结论表示为谓词公式Q，并否定得到￢Q；</li>
+<li>把谓词公式集{F，￢Q}化为子句集S；</li>
+<li>应用归结原理对子句集S中的子句进行归结，并把每次归结得到的归结式都并入到S中。如此反复进行，若出现了空子句，则停止归结，此时就证明了Q为真。</li>
+</ol>
+<h3 id="3-4-应用归结原理求解问题"><a href="#3-4-应用归结原理求解问题" class="headerlink" title="3.4 应用归结原理求解问题"></a>3.4 应用归结原理求解问题</h3><p>应用归结原理求解问题的步骤：</p>
+<ol>
+<li>把已知前提用谓词公式表示出来，并且化为相应的子句集，设该子句集的名字为S；</li>
+<li>把待求解的问题也用谓词公式表示出来，然后把它否定并与答案谓词ANSWER构成析取式，ANSWER是一个为了求解问题而专设的谓词，其变元必须与问题公式的变元完全一致；</li>
+<li>把2中得到的析取式化为子句集，并把该子句集并入到子句集S中，得到子句集S’；</li>
+<li>对S’应用归结原理进行归结；</li>
+<li>若得到归结式ANSWER，则答案就在ANSWER中。</li>
+</ol>
+<h2 id="第四章-不确定性推理方法"><a href="#第四章-不确定性推理方法" class="headerlink" title="第四章 不确定性推理方法"></a>第四章 不确定性推理方法</h2><h3 id="4-1-不确定性推理的概念"><a href="#4-1-不确定性推理的概念" class="headerlink" title="4.1 不确定性推理的概念"></a>4.1 不确定性推理的概念</h3><p>不确定性推理是从不确定性的初始证据出发，通过运用不确定性的知识，最终推出具有一定程度的不确定性但却是合理或者近乎合理的结论的思维过程。</p>
+<ol>
+<li>不确定性的表示与度量</li>
+<li>不确定性匹配算法与阈值</li>
+<li>组合证据不确定性的算法</li>
+<li>不确定性的传递算法</li>
+<li>结论不确定性的合成</li>
+</ol>
+<h3 id="4-2-可信度方法"><a href="#4-2-可信度方法" class="headerlink" title="4.2 可信度方法"></a>4.2 可信度方法</h3><ol>
+<li><p>知识不确定性的表示</p>
+<p>在C-F模型中，知识是用产生式规则表示的，其一般形式为：</p>
+<p>IF        E          THEN       H       (CF(H,E))</p>
+<p>其中，CF(H,E)是该条知识的<strong>可信度</strong>，称为<strong>可信度因子</strong>。</p>
+<p>CF(H,E)反映了前提条件与结论的联系强度。CF(H,E)的值越大，就越支持结论H为真。</p>
+<p><strong>CF(H,E)在[-1,1]上取值</strong>，CF(H,E)的值要求领域专家直接给出。其原则是：若由于相应证据的出现增加结论H为真的可信度，则取CF(H,E)&gt;0，证据的出现越是支持H为真，就使CF(H,E)的值越大；反之，取CF(H,E)&lt;0，证据的出现越是支持H为假，就使CF(H,E)的值越小；若证据的出现与否与H无关，则取CF(H,E)&#x3D;0。</p>
+</li>
+<li><p>证据不确定性的表示</p>
+<p>在C-F模型中，证据的不确定性也是用可信度因子表示的。</p>
+<p><strong>证据E的可信度CF(E)也是在[-1,1]上取值的</strong>。对于初始证据，若对它的所有观察S能肯定它为真，则取CF(E)&#x3D;1;若肯定它为假，则取CF(E)&#x3D;-1;若它以某种程度为真，则取CF(E)为(0,1)中的某一个值，即0&lt;CF(E)&lt;1;若它以某种程度为假，则取CF(E)为(-1,0)中的某一个值，即-1&lt;CF(E)&lt;0;若它还未获得任何相关的观察，此时可看作观赏S与它无关，则取CF(E)&#x3D;0。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/20/Postman%E4%B9%8B%E5%86%85%E7%BD%AE%E6%96%AD%E8%A8%80%E6%B5%8B%E8%AF%95/" rel="prev" title="Postman之内置断言测试">
+      <i class="fa fa-chevron-left"></i> Postman之内置断言测试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/25/Postman%E4%B9%8B%E7%BC%96%E5%86%99%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/" rel="next" title="Postman之编写接口测试框架">
+      Postman之编写接口测试框架 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  人工智能的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-%E6%99%BA%E8%83%BD%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1  智能的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-%E6%99%BA%E8%83%BD%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2  智能的特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.2  人工智能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 人工智能的发展简史</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E5%AD%95%E8%82%B2"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 孕育</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-%E5%BD%A2%E6%88%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 形成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-%E5%8F%91%E5%B1%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 发展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E6%9C%9F"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4 大数据驱动人工智能发展期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A0%94%E7%A9%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 人工智能研究的基本内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%BB%E8%A6%81%E7%A0%94%E7%A9%B6%E9%A2%86%E5%9F%9F"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 人工智能主要研究领域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="nav-number">2.</span> <span class="nav-text">第二章 知识表示与知识图谱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%9F%A5%E8%AF%86%E4%B8%8E%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 知识与知识表示的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E7%9F%A5%E8%AF%86%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 知识的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E7%9F%A5%E8%AF%86%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 知识的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-%E7%9F%A5%E8%AF%86%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 知识的表示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%B8%80%E9%98%B6%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 一阶谓词逻辑表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E5%91%BD%E9%A2%98"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 命题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E8%B0%93%E8%AF%8D"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 谓词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 谓词公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.2.4 谓词公式的性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-%E4%B8%80%E9%98%B6%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.5.</span> <span class="nav-text">2.2.5 一阶谓词逻辑知识表示方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-6-%E4%B8%80%E9%98%B6%E8%B0%93%E8%AF%8D%E9%80%BB%E8%BE%91%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.2.6.</span> <span class="nav-text">2.2.6 一阶谓词逻辑表示法的特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 产生式表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E4%BA%A7%E7%94%9F%E5%BC%8F"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 产生式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 产生式系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 产生式表示法的特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%A1%86%E6%9E%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 框架表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%80%E8%88%AC%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 框架的一般结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-%E6%A1%86%E6%9E%B6%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 框架表示法的特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">第三章 确定性推理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%8E%A8%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 推理的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-%E6%8E%A8%E7%90%86%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 推理方式及其分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E5%8C%96%E4%B8%BA%E5%AD%90%E5%8F%A5%E9%9B%86%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 谓词公式化为子句集的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%BD%92%E7%BB%93%E5%8F%8D%E6%BC%94"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 归结反演</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%BA%94%E7%94%A8%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86%E6%B1%82%E8%A7%A3%E9%97%AE%E9%A2%98"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 应用归结原理求解问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">第四章 不确定性推理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 不确定性推理的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%8F%AF%E4%BF%A1%E5%BA%A6%E6%96%B9%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 可信度方法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dglyzwq"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">dglyzwq</p>
+  <div class="site-description" itemprop="description">null</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DGLYZWQ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DGLYZWQ" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:18867979070@163.com" title="E-Mail → mailto:18867979070@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/" title="Google → https:&#x2F;&#x2F;plus.google.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dglyzwq</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">35k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">32 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
